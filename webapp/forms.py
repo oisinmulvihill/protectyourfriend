@@ -35,7 +35,7 @@ class QuoteForm(forms.Form):
         disabled=False,
         choices=POLICY_TYPE,
         widget=forms.Select(attrs={'class': 'form-control'}),
-        error_messages = {'required': "This field is required."}
+        error_messages={'required': "This field is required."}
     )
 
     species = forms.ChoiceField(
@@ -44,7 +44,7 @@ class QuoteForm(forms.Form):
         disabled=False,
         choices=ANIMALS,
         widget=forms.Select(attrs={'class': 'form-control'}),
-        error_messages = {'required': "This field is required."}
+        error_messages={'required': "This field is required."}
     )
 
     breed = forms.ChoiceField(
@@ -53,7 +53,7 @@ class QuoteForm(forms.Form):
         disabled=False,
         choices=BREEDS,
         widget=forms.Select(attrs={'class': 'form-control'}),
-        error_messages = {'required': "This field is required."}
+        error_messages={'required': "This field is required."}
     )
 
     age = forms.IntegerField(
