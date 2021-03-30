@@ -58,13 +58,12 @@ follows::
 Release
 -------
 
-*Note*: this is more for example purposes as
-
-If all the tests pass then you can do a release to the AWS ECR repository by
-doing::
+*Note*: this is more for example. The build system would handle all the
+releases to actual production/staging/development. Once CI env is configured,
+it would simply call::
 
     # rerun the tests to be sure:
     make test docker_build docker_release
 
-You will need to have logged-in to AWS and recovered the credentials to allow
-docker to push. The protectyourfriend_terraform README shows how to do this.
+If all tests passed then the image would be deployed to prod/dev/stage docker
+repository.
