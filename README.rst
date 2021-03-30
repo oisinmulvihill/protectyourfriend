@@ -28,7 +28,7 @@ To run the service locally in the dev environment do::
     make migrate
 
     # If you want to load some initial policy and breed fixtures you can:
-    make migrate
+    make fixtures
 
     # Create a super user to login to the admin system:
     make superadmin
