@@ -22,7 +22,7 @@ BREEDS = (
     ("british_short_hair", "British Short Hair"),
     ("dalmation", "Dalmation"),
     ("miniature_schnauzer", "Miniature Schnauzer"),
-    ("shiba_Inu", "Shiba Inu"),
+    ("shiba_inu", "Shiba Inu"),
     ("west_highland_white", "West Highland White Terrier"),
 )
 

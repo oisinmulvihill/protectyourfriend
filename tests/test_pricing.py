@@ -98,8 +98,8 @@ def test_excess_reduction_pricing(
         'base_price', 'risk_gradient', 'age', 'excess', 'expected'
     ),
     [
-        # with default multiplier this should be: 1000 * (1 * 1 * 10)
-        (1000, 1, 1, 0, 10000),
+        # with default multiplier this should be: 1000 * (1 * 1 * 100)
+        (1000, 1, 1, 0, 1100),
 
         # need more cases once working end to end
         #

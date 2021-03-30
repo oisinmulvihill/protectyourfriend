@@ -8,7 +8,7 @@ Pricing is handle in pence. The makes it much easier to deal with.
 import logging
 
 
-def calculate_age_risk(risk_gradient, age, multiplier=10):
+def calculate_age_risk(risk_gradient, age, multiplier=100):
     """Get the extra added to the price for given breed risk gradient & age.
 
     :param risk_gradient: The breed risk gradient integer.

@@ -4,7 +4,7 @@ import logging.config
 
 config = {
     'version': 1,
-    'disable_existing_loggers': False,
+    'disable_existing_loggers': True,
     'formatters': {
         "ecs": {
             "format": (

@@ -6,19 +6,9 @@
     <div class="col-sm-6">
       {% if quote_result is None %}
       <H2>Please enter your friend's details</H2>
-      {% else %}
-      <H2>Your quote is</H2>
       {% endif %}
     </div>
   </div>
-
-  {% if quote_result is not None %}
-  <div class="row">
-    <div class="col-sm-1">
-      {{ quote_result }}
-    </div>
-  </div>
-  {% endif %}
 
   <div class="row">
     <div class="col-sm-6">
