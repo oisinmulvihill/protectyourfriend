@@ -95,23 +95,23 @@ def test_excess_reduction_pricing(
 
 @pytest.mark.parametrize(
     (
-        'base_price', 'risk_gradient', 'age', 'excess', 'max_excess',
-        'expected'
+        'base_price', 'risk_gradient', 'age', 'excess', 'expected'
     ),
     [
-        (100, 1, 1, 0, 1000, 100),
+        # with default multiplier this should be: 1000 * (1 * 1 * 10)
+        (1000, 1, 1, 0, 10000),
+        # with discount for excess this should be:
+        (1000, 1, 1, pricing.MAX_EXCESS_GIVEN, 990),
     ]
 )
 def test_price_quote_generation(
-    log, db, base_price, risk_gradient, age, excess, max_excess,
-    expected
+    log, base_price, risk_gradient, age, excess, expected
 ):
-    """
+    """Verify the price for a quote.
     """
     assert pricing.generate_price(
         base_price,
         risk_gradient,
         age,
         excess,
-        max_excess
     ) == expected

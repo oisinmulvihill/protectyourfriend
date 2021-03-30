@@ -8,7 +8,7 @@ Pricing is handle in pence. The makes it much easier to deal with.
 import logging
 
 
-def calculate_age_risk(risk_gradient, age, multiplier=100):
+def calculate_age_risk(risk_gradient, age, multiplier=10):
     """Get the extra added to the price for given breed risk gradient & age.
 
     :param risk_gradient: The breed risk gradient integer.
@@ -20,7 +20,7 @@ def calculate_age_risk(risk_gradient, age, multiplier=100):
 
     If this is not a number, then ValueError will be raised.
 
-    :param multiplier: The pence amount  current pet's age.
+    :param multiplier: The pence multiplier.
 
     I'm using a simple straight line model to approxiate how age increases the
     risk. I use the slope of a line formula y = mx + c for this. C is set 0 in
@@ -65,7 +65,11 @@ def calculate_age_risk(risk_gradient, age, multiplier=100):
     return (risk * _age * _multiplier)
 
 
-def excess_reduction(price, excess, max_excess=100000):
+# Amount in pence
+MAX_EXCESS_GIVEN = 100000
+
+
+def excess_reduction(price, excess, max_excess=MAX_EXCESS_GIVEN):
     """Work out how much to reduce the price the policy price by.
 
     I'm going to start out and assume a discount of 0 - 20% of the price.
@@ -87,7 +91,7 @@ def excess_reduction(price, excess, max_excess=100000):
 
     _excess = int(excess)
     if _excess < 0:
-        log.warn(
+        log.warning(
             f"For price '{price}' with excess '{excess}' no discount was "
             "given! The excess must be greater or equal to 0!"
         )
@@ -110,6 +114,35 @@ def excess_reduction(price, excess, max_excess=100000):
     return returned
 
 
-def generate_price(base_price, risk_gradient, age, excess, max_excess):
+def generate_price(base_price, risk_gradient, age, excess=0):
+    """Generate a price which could be given as a quote to the customer.
+
+    :param base_price: The base policy cost in pence.
+
+    :param risk_gradient: The breed risk gradient integer.
+
+    :param age: The current pet's age.
+
+    :param excess: Any excess amount in pence.
+
+    :returns: The policy price in pence for a quote.
+
     """
-    """
+    log = logging.getLogger(__name__)
+
+    log.debug(f"base:{base_price} risk:{risk_gradient} age:{age}")
+
+    age_risk = calculate_age_risk(risk_gradient, age)
+    log.debug(f"age_risk is:{age_risk}")
+
+    policy_price = base_price + age_risk
+    log.debug(f"policy_price before excess discount:{policy_price}")
+
+    policy_price = excess_reduction(policy_price, excess)
+
+    log.debug(
+        f"Quote for base:{base_price} risk:{risk_gradient} age:{age} "
+        f"excess:{excess} is policy_price:{policy_price}"
+    )
+
+    return int(policy_price)

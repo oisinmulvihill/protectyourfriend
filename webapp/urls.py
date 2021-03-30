@@ -19,6 +19,11 @@ from webapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('v1/', include('api.urls')),
+
+    # API specific views:
+    # path('v1/', include('api.urls')),
+
+    # 'frontend' views
     path('', views.index, name='index'),
+    path('quote', views.handle_quote, name='handle_quote'),
 ]

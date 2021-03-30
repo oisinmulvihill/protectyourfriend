@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="{% url 'handle_quote' %}" method="post">
+  <div class="row">
+    <div class="col-sm-6">
+      {% if quote_result is None %}
+      <H2>Please enter your friend's details</H2>
+      {% else %}
+      <H2>The quote result is:</H2>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if quote_result is not None %}
+  <div class="row">
+    <div class="col-sm-6">
+      {{ "here!" }}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="row">
+    <div class="col-sm-6">
+      {% csrf_token %}
+      {{ form }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      {% if quote_result is not None %}
+      <input type="submit" value="Update">
+      <button><a href="/quote">New</a></button>
+      <button><a href="#">Save</a></button>
+      <button><a href="#">Pay</a></button>
+      {% else %}
+      <input type="submit" value="Quote Me">
+      {% endif %}
+    </div>
+  </div>
+
+</form>
+{% endblock %}
