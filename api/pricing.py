@@ -13,7 +13,12 @@ def calculate_age_risk(risk_gradient, age, multiplier=100):
 
     :param risk_gradient: The breed risk gradient integer.
 
+    If this is not a number or a number greater than 0 ValueError will be
+    raised.
+
     :param age: The current pet's age.
+
+    If this is not a number, then ValueError will be raised.
 
     :param multiplier: The pence amount  current pet's age.
 
@@ -35,6 +40,29 @@ def calculate_age_risk(risk_gradient, age, multiplier=100):
     :returns: The pence amount to add to the policy.
 
     """
+    # validate inputs ready for calulations:
+    if risk_gradient is None:
+        raise ValueError("The risk_gradient is not a number!")
+
+    risk = int(risk_gradient)
+    if risk < 1:
+        raise ValueError("The risk_gradient must be greater than zero!")
+
+    if age is None:
+        raise ValueError("The age is not a number!")
+
+    _age = int(age)
+    if _age < 0:
+        raise ValueError("The age must be 0 or more!")
+
+    if multiplier is None:
+        raise ValueError("The age is not a number!")
+
+    _multiplier = int(multiplier)
+    if _multiplier < 1:
+        raise ValueError("The multiplier must be 1 or more!")
+
+    return (risk * _age * _multiplier)
 
 
 def excess_reduction(price, excess, max_excess=100000):
@@ -80,3 +108,8 @@ def excess_reduction(price, excess, max_excess=100000):
     )
 
     return returned
+
+
+def generate_price(base_price, risk_gradient, age, excess, max_excess):
+    """
+    """

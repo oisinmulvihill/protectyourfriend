@@ -100,7 +100,7 @@ class Breed(models.Model):
             raise ValueError("Breed name is required!")
 
         _gradient = int(risk_gradient)
-        if not _gradient < 1:
+        if _gradient < 1:
             raise ValueError("The risk gradient must 1 or more!")
 
         breed = cls(
@@ -116,7 +116,9 @@ class Breed(models.Model):
     def get(cls, species, name):
         """Recover an existing breed entry.
         """
-        return cls.objects.get(species, name)
+        return cls.objects.filter(
+            species=species, name=name
+        ).first()
 
     @classmethod
     def breeds(cls):

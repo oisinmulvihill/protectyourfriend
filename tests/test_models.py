@@ -28,6 +28,9 @@ def test_basic_policy_operations(log, db):
     # check the empty state doesn't break things
     assert PolicyType.policies() == []
 
+    # there should be no annual policy in there:
+    PolicyType.get('annual') is not None
+
     # check the basic error cases
     #
     # no name given or its empty:
@@ -44,6 +47,7 @@ def test_basic_policy_operations(log, db):
     PolicyType.add('annual', 800)
     assert len(PolicyType.policies()) == 1
     policy = PolicyType.get('annual')
+    assert policy is not None
     assert policy.name == 'annual'
     assert policy.base_price == 800
     assert policy.created is not None
@@ -76,10 +80,17 @@ def test_basic_policy_operations(log, db):
     # check the empty state doesn't break things
     assert Breed.breeds() == []
 
+    # there should be no border_collie in there:
+    Breed.get('dog', 'border_collie') is not None
+
     # Add in a policy (price is in pence)
-    Breed.add('annual', 800)
-    assert len(Breed.policies()) == 1
-    policy = Breed.get('annual')
-    assert policy.name == 'annual'
-    assert policy.base_price == 800
-    assert policy.created is not None
+    Breed.add('dog', 'border_collie', 2)
+
+    assert len(Breed.breeds()) == 1
+
+    breed = Breed.get('dog', 'border_collie')
+    assert breed is not None
+    assert breed.species == 'dog'
+    assert breed.name == 'border_collie'
+    assert breed.risk_gradient == 2
+    assert breed.created is not None
