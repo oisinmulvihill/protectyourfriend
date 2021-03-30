@@ -52,7 +52,10 @@ README.pdf: *.rst
 
 docs: README.pdf
 
-run:
+collect:
+	python manage.py collectstatic --noinput
+
+run: collect
 	python manage.py runserver
 
 migrate:
@@ -86,6 +89,12 @@ docker_release:
 
 lint:
 	flake8 --ignore=E501 webapp api
+
+fixtures: migrate
+	python manage.py fixtures
+
+superuser:
+	python manage.py createsuperuser
 
 test: lint
 	pytest -s --ds=webapp.settings --cov=api --cov=webapp

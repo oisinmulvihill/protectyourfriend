@@ -7,15 +7,21 @@
       {% if quote_result is None %}
       <H2>Please enter your friend's details</H2>
       {% else %}
-      <H2>The quote result is:</H2>
+      <H2>Your quote is</H2>
       {% endif %}
     </div>
   </div>
 
   {% if quote_result is not None %}
   <div class="row">
-    <div class="col-sm-6">
-      {{ "here!" }}
+    <div class="col-sm-1">
+      {{ result.outcome }}
+    </div>
+    <div class="col-sm-1">
+      {{ result.price_quote }}
+    </div>
+    <div class="col-sm-1">
+      <button><a href="/quote">New</a></button>
     </div>
   </div>
   {% endif %}
@@ -31,11 +37,10 @@
     <div class="col-sm-6">
       {% if quote_result is not None %}
       <input type="submit" value="Update">
-      <button><a href="/quote">New</a></button>
       <button><a href="#">Save</a></button>
       <button><a href="#">Pay</a></button>
       {% else %}
-      <input type="submit" value="Quote Me">
+      <input type="submit" value="Quote">
       {% endif %}
     </div>
   </div>

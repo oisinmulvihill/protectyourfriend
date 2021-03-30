@@ -1,5 +1,4 @@
 python-decouple
 psycopg2-binary
 django
-djangorestframework
 gunicorn

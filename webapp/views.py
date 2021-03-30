@@ -8,7 +8,7 @@ from webapp.forms import QuoteForm
 
 
 def index(request):
-    """
+    """Home and call to action to get quote.
     """
     log = logging.getLogger(__name__)
 
@@ -19,7 +19,10 @@ def index(request):
 
 
 def handle_quote(request):
-    """
+    """Show quote form or the results of a quote.
+
+    Potentially the customer can jump to pay or save as next locations.
+
     """
     result = None
 
@@ -29,7 +32,9 @@ def handle_quote(request):
         form = QuoteForm(request.POST)
         if form.is_valid():
             # work out price
-            result = 'success'
+            result = dict(
+                outcome='ok', price_quote='£wx.yz'
+            )
 
     else:
         # Blank for default:

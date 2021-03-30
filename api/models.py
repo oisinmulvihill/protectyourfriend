@@ -21,7 +21,7 @@ class PolicyType(models.Model):
     I try to keep the lower level db query operation hide at this layer.
 
     """
-    name = models.CharField(max_length=10, unique=True)
+    name = models.CharField(max_length=64, unique=True)
 
     base_price = models.IntegerField()
 
