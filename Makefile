@@ -8,8 +8,12 @@ DOCKER_NAME=protectyourfriend_service
 DOCKER_IMAGE=${DOCKER_NAME}:${GIT_COMMIT}
 DOCKER_BRANCH_IMAGE=${DOCKER_NAME}:${BRANCH_NAME}-latest
 
+# local dev debug is enabled by default. The use of make & Makefile are not
+# for production.
+export DEBUG_ENABLED?=1
+
 .DEFAULT_GOAL := all
-.PHONY: all install clean run test docker_build docker_test up down ps docs lint
+.PHONY: all install clean run test docker_build docker_test up down ps docs lint fixtures
 
 export DB_HOST?=127.0.0.1
 export DB_NAME=service

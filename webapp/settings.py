@@ -30,10 +30,13 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1"
 ]
+FQDN = os.environ.get("FQDN", "").strip()
+if FQDN:
+    ALLOWED_HOSTS.insert(0, FQDN)
+
 
 # Application definition
 INSTALLED_APPS = [
-    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

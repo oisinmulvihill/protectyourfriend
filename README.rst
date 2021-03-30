@@ -27,29 +27,19 @@ To run the service locally in the dev environment do::
     # Create/migrate the DB schema ready for use:
     make migrate
 
+    # If you want to load some initial policy and breed fixtures you can:
+    make migrate
+
+    # Create a super user to login to the admin system:
+    make superadmin
+
     # run the webapp
     make run
 
-If you go to https://localhost:8000/ you will see the message "Database is empty!"
-as no "hello content" has been set. This can be done quickly using the REST
-API. For example::
+If you go to https://localhost:8000/ you the site root and call to action.
 
-    $ curl -H 'Content-Type: application/json' \
-        -d '{"value": "Hello World"}' \
-        http://localhost:8000/v1/hellocontent/
-    {"created":"2020-07-20T16:46:08.729931Z","value":"Hello World"}
-    $
-
-If you now look at https://localhost:8000/ you will see "Hello World".
-Alternatively You can create a superuser to use the admin interface using::
-
-    python manage.py createsuperuser
-
-Then go to http://localhost:8000/admin and then navigate to the "Hello contents"
-admin section and add an entry.
-
-You can add multiple hello content entries, however only the latest created
-entry is shown.
+You can log into the admin system to edit the policy and breed information
+here http://localhost:8000/admin.
 
 
 Testing
@@ -63,6 +53,7 @@ follows::
 
     # Run basic model and view tests
     make test
+
 
 Release
 -------

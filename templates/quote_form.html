@@ -15,13 +15,7 @@
   {% if quote_result is not None %}
   <div class="row">
     <div class="col-sm-1">
-      {{ result.outcome }}
-    </div>
-    <div class="col-sm-1">
-      {{ result.price_quote }}
-    </div>
-    <div class="col-sm-1">
-      <button><a href="/quote">New</a></button>
+      {{ quote_result }}
     </div>
   </div>
   {% endif %}
@@ -39,6 +33,7 @@
       <input type="submit" value="Update">
       <button><a href="#">Save</a></button>
       <button><a href="#">Pay</a></button>
+      <button><a href="/quote">New</a></button>
       {% else %}
       <input type="submit" value="Quote">
       {% endif %}
